@@ -2,11 +2,11 @@
 [2]: http://vagrantup.com "Vagrant" 
 [3]: http://megastep.org/makeself/ "Makeself"
 
-#  A Vagrant-based environment for cross-compiling the Raspberry Pi kernel
+#  A Vagrant-based environment to cross-compile the Raspberry Pi kernel
 
 ## Overview
 
-This repository provides a Vagrant configuration to easily and repeatedly create a sandboxed environment for cross-compiling the Raspberry Pi kernel.
+This repository provides a Vagrant configuration to easily and repeatedly create a sandboxed environment for cross-compilation of the Raspberry Pi kernel.
 
 It provides a convenient way of provisioning an Ubuntu box with all the tools that are necessary to cross-compile the Raspberry Pi kernel. In addition to that it comes with a script to automatically download the kernel sources, start the kernel configuration tool, build the kernel and finally package it into a self-extracting installer. The installer allows to easily install the new kernel on the Pi, while at the same time taking care of creating a backup of a possibly already existing kernel of the same version. Last but not least a basic script to rollback the kernel version is also packaged with that backup. 
 
@@ -125,7 +125,7 @@ An example invocation of the kernel installer could look as follows:
 
 ##### Caveats
 
-* The installer script which is included in the self-extracting archive will be extracted to a sub-directory of the directory that also contains the archive itself. For that reason it is recommended to just specify absolute paths when using the configuration options above so that you don't have to deal with constructing paths that are relative to the folder to which the contents of the archive was extracted to.
+* The installer script which is included in the self-extracting archive will be extracted to a sub-directory of the current working directory. For that reason it is recommended to just specify absolute paths when using the configuration options above so that you don't have to deal with constructing paths that are relative to the folder to which the contents of the archive was extracted to.
 * even though the installer comes with some (very simplistic) test logic to make sure that you don't accidentally install the Raspberry Pi kernel to the normal Linux box on which you execute the installer, you should not rely on this logic, but instead **ALWAYS** make use of the `--bootdir` and `--libdir` options whenever you do not execute the installer directly on the Raspberry Pi!  
 
 #### Backup creation
@@ -137,7 +137,7 @@ Before the installer copies the new kernel components to the filesytem, it check
 * `/lib/firmware`
 * `/lib/modules`
 
-Per default the backup archive containing copies of those files and folders is made available in the same directory as the kernel installer file and is named `rpi_kernel_backup_<version>.tar.gz`.
+Per default the backup archive with copies of those files and folders is made available in the current working directory and is named `rpi_kernel_backup_<version>.tar.gz`.
 
 You can override where the installer stores the backup by using the `--backupdir` option of the installer script.
 
