@@ -39,13 +39,22 @@ Clone this Git repository and start and connect to the virtual machine configure
     $ vagrant up
     $ vagrant ssh
 
-#### Customization of the Vagrant box
+#### Customization of the VM
 
 When using the default configuration provided in this repository, Vagrant will start a 64bit Ubuntu box ([hashicorp/precise64](https://vagrantcloud.com/hashicorp/precise64)) and the virtual machine will have 4 CPUs assigned per default.
 
-This default configuration can be overridden by setting the following environment variable in the host operating system before invoking `vagrant up`:
+This default configuration can be overridden by setting the following environment variables in the host operating system before invoking `vagrant up`:
 
+* `VAGRANT_32BIT`: set this to `y` if you have to use a 32 bit VM instead of the default 64 bit Ubuntu box. In this case [hashicorp/precise32](https://vagrantcloud.com/hashicorp/precise32) will be used as a basebox for the VM. 
+ > NOTE: for a VM that was already created by Vagrant you should not change this property afterwards, as the VM will refuse to start in that case. To change from 64 to 32 bit or vice versa you will need to destroy the VM with `vagrant destroy` first!
 * `VAGRANT_CPUS`: specify the number of CPUs that the virtual machine shall be started with
+
+**Example:** start a 32 bit VM with 2 CPUs:
+
+    $ export VAGRANT_32BIT=y
+    $ export VAGRANT_CPUS=2
+    $ vagrant up
+
 
 ### Building a Raspberry Pi kernel
 
