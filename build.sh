@@ -197,6 +197,6 @@ cp install.sh "$PKGDIR"
 if [ ! -d output ]; then
   mkdir output
 fi
-makeself --notemp "$PKGDIR" "output/rpi_kernel_$VERSION.sh" "Custom kernel (version $VERSION) for the Raspberry Pi" ./install.sh
+makeself --notemp "$PKGDIR" "/vagrant/output/rpi_kernel_$VERSION.sh" "Custom kernel (version $VERSION) for the Raspberry Pi" ./install.sh
 
 rm -rf "$TMPDIR"
